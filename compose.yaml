@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: gift-api-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: giftdb
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"  # expose PostgreSQL port
+    volumes:
+      - giftdb-data:/var/lib/postgresql
+
+volumes:
+  giftdb-data:

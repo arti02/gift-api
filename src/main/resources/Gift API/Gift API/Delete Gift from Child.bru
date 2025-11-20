@@ -1,0 +1,19 @@
+meta {
+  name: Delete Gift from Child
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/child/{{childId}}/gift/{{giftId}}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Delete a specific gift from a specific child
+}

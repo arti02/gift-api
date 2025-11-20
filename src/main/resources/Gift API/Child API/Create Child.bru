@@ -1,0 +1,39 @@
+meta {
+  name: Create Child
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/child
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "birthDate": "2015-05-20"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) {
+      var jsonData = res.getBody();
+      bru.setVar("childId", jsonData.id);
+      bru.setEnvVar("childId", jsonData.id);
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Create a new child with firstName, lastName, and birthDate
+}

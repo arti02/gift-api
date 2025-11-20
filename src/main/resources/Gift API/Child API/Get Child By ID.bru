@@ -1,0 +1,19 @@
+meta {
+  name: Get Child By ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/child/{{childId}}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Get a specific child by their ID
+}

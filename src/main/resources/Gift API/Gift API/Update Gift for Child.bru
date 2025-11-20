@@ -1,0 +1,30 @@
+meta {
+  name: Update Gift for Child
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v1/child/{{childId}}/gift/{{giftId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "LEGO Harry Potter Castle",
+    "price": 199.99
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Update a specific gift for a specific child
+}

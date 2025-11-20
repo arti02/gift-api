@@ -1,0 +1,31 @@
+meta {
+  name: Update Child
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v1/child/{{childId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "birthDate": "2016-08-15"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Update an existing child's information
+}

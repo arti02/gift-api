@@ -1,0 +1,30 @@
+meta {
+  name: 5. Try Add Fourth Gift (Should Fail)
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/v1/child/{{testChildId}}/gift
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Tablet",
+    "price": 399.99
+  }
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  This should return 400 Bad Request with message 'Child can have max 3 gifts'
+}

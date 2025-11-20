@@ -1,0 +1,26 @@
+meta {
+  name: 4. Add Third Gift
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/v1/child/{{testChildId}}/gift
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Bicycle",
+    "price": 299.99
+  }
+}
+
+settings {
+  encodeUrl: true
+}
