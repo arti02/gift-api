@@ -1,12 +1,12 @@
 package com.giftapi.service;
 
-import com.giftapi.dto.GiftDTO;
-import com.giftapi.dto.command.gift.AddGiftCommand;
-import com.giftapi.dto.command.gift.UpdateGiftCommand;
+import com.giftapi.model.dto.GiftDTO;
+import com.giftapi.model.dto.command.gift.AddGiftCommand;
+import com.giftapi.model.dto.command.gift.UpdateGiftCommand;
 import com.giftapi.exception.GiftApiException;
 import com.giftapi.mapper.GiftMapper;
-import com.giftapi.model.Child;
-import com.giftapi.model.Gift;
+import com.giftapi.model.entity.Child;
+import com.giftapi.model.entity.Gift;
 import com.giftapi.repository.ChildRepository;
 import com.giftapi.repository.GiftRepository;
 import jakarta.transaction.Transactional;
@@ -33,7 +33,7 @@ public class GiftService {
 
 	@Transactional
 	public GiftDTO addGiftToChild(Long childId, AddGiftCommand cmd) {
-		Child child = childRepository.findByIdWithLock(childId)
+		Child child = childRepository.findWithLockingById(childId)
 				.orElseThrow(() -> entityNotFound("Child not found with id: " + childId));
 		if (giftRepository.countGiftByChildId(childId) >= 3) {
 			throw GiftApiException.of("Child can have max 3 gifts", HttpStatus.BAD_REQUEST);
@@ -48,7 +48,7 @@ public class GiftService {
 
 	@Transactional
 	public void deleteGiftFromChild(Long giftId, Long childId) {
-		Child child = childRepository.findByIdWithLock(childId)
+		Child child = childRepository.findWithLockingById(childId)
 				.orElseThrow(() -> entityNotFound("Child not found with id: " + childId));
 		child.getGifts().removeIf(gift -> gift.getId().equals(giftId));
 	}
@@ -61,7 +61,7 @@ public class GiftService {
 
 	@Transactional
 	public GiftDTO updateGiftForChild(Long giftId, Long childId,  UpdateGiftCommand cmd) {
-		Child child = childRepository.findByIdWithLock(childId)
+		Child child = childRepository.findWithLockingById(childId)
 				.orElseThrow(() -> entityNotFound("Child not found with id: " + childId));
 
 		Gift gift = giftRepository.findByIdAndChildId(giftId, child.getId())

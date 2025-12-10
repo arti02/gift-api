@@ -1,0 +1,458 @@
+{
+	"info": {
+		"name": "Gift API",
+		"description": "Complete API collection for Gift API - Children and Gifts management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "childId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "giftId",
+			"value": "1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Children API",
+			"item": [
+				{
+					"name": "Get All Children (Paginated)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children?page=0&size=10&sort=firstName,asc",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Page number (0-indexed)"
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"description": "Page size"
+								},
+								{
+									"key": "sort",
+									"value": "firstName,asc",
+									"description": "Sort field and direction"
+								}
+							]
+						},
+						"description": "Get all children with pagination and optional filters"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Children with Filters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children?page=0&size=10&firstName=John&giftCount=2",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "firstName",
+									"value": "John",
+									"description": "Filter by first name"
+								},
+								{
+									"key": "giftCount",
+									"value": "2",
+									"description": "Filter by gift count"
+								}
+							]
+						},
+						"description": "Get children with dynamic filters (firstName, lastName, giftCount, etc.)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Child By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children/{{childId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children", "{{childId}}"]
+						},
+						"description": "Get a specific child by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Simple Child",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"properties\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"birthDate\": \"2015-05-20\",\n    \"type\": \"SIMPLE_CHILD\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children"]
+						},
+						"description": "Create a new simple child"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Boy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"properties\": {\n    \"firstName\": \"Tom\",\n    \"lastName\": \"Smith\",\n    \"birthDate\": \"2014-08-15\",\n    \"type\": \"BOY\",\n    \"favoriteSport\": \"Football\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children"]
+						},
+						"description": "Create a new boy with favorite sport"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Girl",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"properties\": {\n    \"firstName\": \"Alice\",\n    \"lastName\": \"Johnson\",\n    \"birthDate\": \"2016-03-10\",\n    \"type\": \"GIRL\",\n    \"dressColor\": \"Pink\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children"]
+						},
+						"description": "Create a new girl with dress color"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Boy",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"properties\": {\n    \"firstName\": \"Thomas\",\n    \"lastName\": \"Smith\",\n    \"birthDate\": \"2014-08-15\",\n    \"type\": \"BOY\",\n    \"favoriteSport\": \"Basketball\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children/{{childId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children", "{{childId}}"]
+						},
+						"description": "Update an existing boy"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Girl",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"properties\": {\n    \"firstName\": \"Alice\",\n    \"lastName\": \"Johnson\",\n    \"birthDate\": \"2016-03-10\",\n    \"type\": \"GIRL\",\n    \"dressColor\": \"Blue\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children/{{childId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children", "{{childId}}"]
+						},
+						"description": "Update an existing girl"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Child",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children/{{childId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children", "{{childId}}"]
+						},
+						"description": "Delete a child by ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gifts API",
+			"item": [
+				{
+					"name": "Get All Gifts for Child",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children/{{childId}}/gifts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children", "{{childId}}", "gifts"]
+						},
+						"description": "Get all gifts for a specific child (max 3 per child)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Gift for Child",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children/{{childId}}/gifts/{{giftId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children", "{{childId}}", "gifts", "{{giftId}}"]
+						},
+						"description": "Get a specific gift for a specific child"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Gift to Child",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"LEGO Set\",\n  \"price\": 49.99\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children/{{childId}}/gifts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children", "{{childId}}", "gifts"]
+						},
+						"description": "Add a new gift to a child (max 3 gifts per child)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Gift for Child",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"LEGO Creator Set\",\n  \"price\": 59.99\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children/{{childId}}/gifts/{{giftId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children", "{{childId}}", "gifts", "{{giftId}}"]
+						},
+						"description": "Update an existing gift for a specific child"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Gift from Child",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/children/{{childId}}/gifts/{{giftId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "v1", "children", "{{childId}}", "gifts", "{{giftId}}"]
+						},
+						"description": "Delete a gift from a specific child"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Scenarios",
+			"item": [
+				{
+					"name": "Create Boy with 3 Gifts",
+					"item": [
+						{
+							"name": "1. Create Boy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.code === 201) {",
+											"    var jsonData = pm.response.json();",
+											"    pm.collectionVariables.set(\"childId\", jsonData.id);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"properties\": {\n    \"firstName\": \"Michael\",\n    \"lastName\": \"Jordan\",\n    \"birthDate\": \"2013-02-17\",\n    \"type\": \"BOY\",\n    \"favoriteSport\": \"Basketball\"\n  }\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/children",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "v1", "children"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2. Add First Gift",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Basketball\",\n  \"price\": 29.99\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/children/{{childId}}/gifts",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "v1", "children", "{{childId}}", "gifts"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3. Add Second Gift",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Nike Sneakers\",\n  \"price\": 89.99\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/children/{{childId}}/gifts",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "v1", "children", "{{childId}}", "gifts"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4. Add Third Gift",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Sports Watch\",\n  \"price\": 49.99\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/children/{{childId}}/gifts",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "v1", "children", "{{childId}}", "gifts"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5. Verify All Gifts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/children/{{childId}}/gifts",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "v1", "children", "{{childId}}", "gifts"]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
+
