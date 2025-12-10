@@ -1,4 +1,4 @@
-package com.giftapi.dto;
+package com.giftapi.model.dto;
 
 import java.math.BigDecimal;
 

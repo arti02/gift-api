@@ -1,5 +1,6 @@
 package com.giftapi;
 
+import com.giftapi.common.TestcontainersConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;

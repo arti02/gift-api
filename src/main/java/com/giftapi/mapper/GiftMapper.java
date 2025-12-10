@@ -1,7 +1,7 @@
 package com.giftapi.mapper;
 
-import com.giftapi.dto.GiftDTO;
-import com.giftapi.model.Gift;
+import com.giftapi.model.dto.GiftDTO;
+import com.giftapi.model.entity.Gift;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

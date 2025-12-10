@@ -1,4 +1,4 @@
-package com.giftapi.dto.command.gift;
+package com.giftapi.model.dto.command.gift;
 
 import jakarta.validation.constraints.NotNull;
 
