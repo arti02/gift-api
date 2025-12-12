@@ -35,7 +35,7 @@ public class GiftService {
 	public GiftDTO addGiftToChild(Long childId, AddGiftCommand cmd) {
 		Child child = childRepository.findWithLockingById(childId)
 				.orElseThrow(() -> entityNotFound("Child not found with id: " + childId));
-		if (giftRepository.countGiftByChildId(childId) >= 3) {
+		if (child.getGifts().size() >= 3) {
 			throw GiftApiException.of("Child can have max 3 gifts", HttpStatus.BAD_REQUEST);
 		}
 		Gift gift = new Gift();
