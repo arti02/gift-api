@@ -28,9 +28,11 @@ public class Gift {
 	private Long id;
 
 	@ToString.Include
+	@EqualsAndHashCode.Include
 	private String name;
 
 	@ToString.Include
+	@EqualsAndHashCode.Include
 	private BigDecimal price;
 
 	@ManyToOne
