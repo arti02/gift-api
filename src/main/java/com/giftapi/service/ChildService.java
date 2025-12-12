@@ -61,7 +61,7 @@ public class ChildService {
 
 	@Transactional
 	public ChildDTO update(Long id, UpdateChildCommand cmd) {
-		Child existing = childRepository.findById(id).orElseThrow(() -> entityNotFound("Child not found with id: " + id));
+		Child existing = childRepository.findWithLockingById(id).orElseThrow(() -> entityNotFound("Child not found with id: " + id));
 		ChildrenOperations operation = getOperation(cmd.getProperties());
 		Child child = operation.update(cmd, existing);
 		return operation.mapToDTO(childRepository.save(child));

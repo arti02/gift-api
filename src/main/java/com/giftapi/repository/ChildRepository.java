@@ -6,6 +6,7 @@ import jakarta.persistence.LockModeType;
 import jakarta.persistence.QueryHint;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Lock;
@@ -22,6 +23,7 @@ import static org.hibernate.jpa.HibernateHints.HINT_FETCH_SIZE;
 public interface ChildRepository extends JpaRepository<Child, Long>, JpaSpecificationExecutor<Child> {
 
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
+	@EntityGraph(attributePaths = {"gifts"})
 	Optional<Child> findWithLockingById(Long id);
 
 	@Query(value = """
