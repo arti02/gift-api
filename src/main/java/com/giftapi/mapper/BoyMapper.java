@@ -39,11 +39,13 @@ public class BoyMapper {
 
 	public static Child toEntity(Child child, Map<String, Object> properties) {
 		if (child instanceof Boy boy) {
-			boy.setFirstName(properties.get("firstName").toString());
-			boy.setLastName(properties.get("lastName").toString());
-			boy.setBirthDate(LocalDate.parse(properties.get("birthDate").toString()));
-			boy.setFavoriteSport(properties.get("favoriteSport").toString());
-			return boy;
+			Boy clone = (Boy) boy.clone();
+			clone.setFirstName(properties.get("firstName").toString());
+			clone.setLastName(properties.get("lastName").toString());
+			clone.setBirthDate(LocalDate.parse(properties.get("birthDate").toString()));
+			clone.setFavoriteSport(properties.get("favoriteSport").toString());
+			clone.setVersion((Long) properties.get("version"));
+			return clone;
 		}
 		throw GiftApiException.of("Invalid type", BAD_REQUEST);
 	}

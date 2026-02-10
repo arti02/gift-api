@@ -10,11 +10,11 @@ import com.giftapi.model.entity.Child;
 import com.giftapi.repository.ChildRepository;
 import com.giftapi.service.operations.ChildrenOperations;
 import jakarta.persistence.DiscriminatorValue;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 
@@ -75,7 +75,6 @@ public class ChildService {
 		childRepository.deleteById(id);
 	}
 
-	@Transactional
 	public ChildDTO create(CreateChildCommand cmd) {
 		ChildrenOperations operations = getOperation(cmd.getProperties());
 		Child child = operations.create(cmd);

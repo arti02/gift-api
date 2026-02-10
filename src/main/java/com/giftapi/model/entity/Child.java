@@ -13,6 +13,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.SecondaryTable;
+import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -40,7 +41,7 @@ import java.util.Set;
 		name = "child_gift_count_view",
 		pkJoinColumns = @PrimaryKeyJoinColumn(name = "child_id", referencedColumnName = "id")
 )
-public class Child {
+public class Child implements Cloneable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,4 +64,15 @@ public class Child {
 	@Column(table = "child_gift_count_view", name = "gift_count", insertable = false, updatable = false)
 	private Long giftCount;
 
+	@Version
+	private long version;
+
+	@Override
+	public Child clone() {
+		try {
+			return (Child) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new RuntimeException(e);	//TODO: zmiana wyjatku
+		}
+	}
 }

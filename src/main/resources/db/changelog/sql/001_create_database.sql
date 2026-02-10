@@ -6,7 +6,8 @@ CREATE TABLE child (
                        id BIGSERIAL PRIMARY KEY,
                        first_name VARCHAR(255) NOT NULL,
                        last_name VARCHAR(255) NOT NULL,
-                       birth_date DATE NOT NULL
+                       birth_date DATE NOT NULL,
+                       version BIGINT
 );
 
 -- Create table GIFT
